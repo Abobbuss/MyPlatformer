@@ -10,8 +10,9 @@ public class Jump : MonoBehaviour
 
     private CheckGround _checkGround;
     private Rigidbody2D _rb;
-    private const string jumpInput = "Jump";
     private float _jumpTimeCounter;
+
+    private const string JumpInput = "Jump";
 
     private void Start()
     {
@@ -21,15 +22,12 @@ public class Jump : MonoBehaviour
     }
     private void Update()
     {
-
-        if (Input.GetButtonDown(jumpInput) && _checkGround.GetIsGrounded())
+        Debug.Log(_checkGround.GetIsGrounded());
+        if (Input.GetButtonDown(JumpInput) && _checkGround.GetIsGrounded())
             StartJump();
 
-        if (Input.GetButton(jumpInput))
+        if (Input.GetButton(JumpInput))
             ContinueJump();
-
-        if (Input.GetButtonUp(jumpInput))
-            EndJump();
     }
 
     private void StartJump()
@@ -47,13 +45,5 @@ public class Jump : MonoBehaviour
             _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             _jumpTimeCounter -= Time.deltaTime;
         }
-        else
-        {
-            EndJump();
-        }
-    }
-
-    private void EndJump()
-    {
     }
 }

@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232370322}
   - component: {fileID: 232370323}
+  - component: {fileID: 232370324}
   m_Layer: 0
   m_Name: SpawnZoneCoint2
   m_TagString: Untagged
@@ -165,7 +166,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.6427734, y: 0}
@@ -181,6 +182,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2855468, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &232370324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232370321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba8ce91def9fc5409135f0500718707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPrefab: {fileID: 5428722751004472030, guid: 18f7d1ad3bff40446b84110b63bd9560, type: 3}
 --- !u!1 &274740983
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576076353}
   - component: {fileID: 576076354}
+  - component: {fileID: 576076355}
   m_Layer: 0
   m_Name: SpawnZoneCoint1
   m_TagString: Untagged
@@ -339,7 +354,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2815199, y: 0}
@@ -355,6 +370,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9593716, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &576076355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576076352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba8ce91def9fc5409135f0500718707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPrefab: {fileID: 5428722751004472030, guid: 18f7d1ad3bff40446b84110b63bd9560, type: 3}
 --- !u!1 &881747110
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +429,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &881844824 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7877764084070263274, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
+  m_PrefabInstance: {fileID: 7877764084948767481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &966678240
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 966678241}
   - component: {fileID: 966678242}
+  - component: {fileID: 966678243}
   m_Layer: 0
   m_Name: SpawnZoneCoint3
   m_TagString: Untagged
@@ -443,7 +477,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.82401896, y: 0}
@@ -459,6 +493,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.1824007, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &966678243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966678240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba8ce91def9fc5409135f0500718707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPrefab: {fileID: 5428722751004472030, guid: 18f7d1ad3bff40446b84110b63bd9560, type: 3}
 --- !u!1 &1181917457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,6 +2552,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &2097007545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7877764084255483719, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
+  m_PrefabInstance: {fileID: 7877764084948767481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &941054450465565864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2617,5 +2669,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877764084415554879, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
+      propertyPath: _patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877764084415554879, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
+      propertyPath: _patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 881844824}
+    - target: {fileID: 7877764084415554879, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
+      propertyPath: _patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2097007545}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c53e4e67788e19e42b6c2d0c6da81447, type: 3}
