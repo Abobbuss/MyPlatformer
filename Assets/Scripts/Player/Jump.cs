@@ -22,7 +22,6 @@ public class Jump : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(_checkGround.GetIsGrounded());
         if (Input.GetButtonDown(JumpInput) && _checkGround.GetIsGrounded())
             StartJump();
 
