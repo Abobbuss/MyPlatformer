@@ -21,9 +21,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-
-        if (enemy != null)
+        if (other.TryGetComponent(out Enemy _))
         {
             TakeDamage();
         }

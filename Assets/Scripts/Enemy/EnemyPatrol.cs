@@ -39,9 +39,6 @@ public class EnemyPatrol : MonoBehaviour
 
     private void FlipEnemy()
     {
-        if (_currentPatrolIndex < _patrolPoints.Length - 1)
-            _spriteRenderer.flipX = false;
-        else
-            _spriteRenderer.flipX = true;
+        _spriteRenderer.flipX = _currentPatrolIndex < _patrolPoints.Length - 1;
     }
 }

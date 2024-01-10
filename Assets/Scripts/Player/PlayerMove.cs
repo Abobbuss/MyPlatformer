@@ -45,9 +45,6 @@ public class PlayerMove : MonoBehaviour
 
     private void FlipCharacter(float horizontalInput)
     {
-        if (horizontalInput > 0)
-            _spriteRenderer.flipX = false;
-        else
-            _spriteRenderer.flipX = true;
+        _spriteRenderer.flipX = horizontalInput < 0;
     }
 }

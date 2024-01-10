@@ -8,7 +8,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float _maxJumpForce = 6f;
     [SerializeField] private float _jumpTime = 0.25f;
 
-    private CheckGround _checkGround;
+    private GroundCheck _checkGround;
     private Rigidbody2D _rb;
     private float _jumpTimeCounter;
 
@@ -18,7 +18,7 @@ public class Jump : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _jumpTimeCounter = _jumpTime;
-        _checkGround = GetComponentInChildren<CheckGround>();
+        _checkGround = GetComponentInChildren<GroundCheck>();
     }
     private void Update()
     {
