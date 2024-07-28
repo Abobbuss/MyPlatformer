@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,9 +9,11 @@ public class Medkit : MonoBehaviour
     {
         if (other.TryGetComponent(out Player _))
         {
-            TakingMedKit?.Invoke();
+            InvokeTakingMedkit();
 
-            Destroy(gameObject);
+/*            Destroy(gameObject);*/
         }
     }
+
+    public static void InvokeTakingMedkit() => TakingMedKit?.Invoke();
 }

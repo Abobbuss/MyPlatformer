@@ -6,9 +6,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 3;
 
-    public static event UnityAction<Player> TakingDamage;
+    public event UnityAction TakingDamage;
+    public event UnityAction ChangeHealth;
 
     private int _currentHealth;
+
+    public int CurrentHealth => _currentHealth;
+    public int MaxHealth => _maxHealth;
 
     private void Start()
     {
@@ -21,7 +25,8 @@ public class Player : MonoBehaviour
 
         if (_currentHealth > 0)
         {
-            TakingDamage?.Invoke(this);
+            TakingDamage?.Invoke();
+            ChangeHealth?.Invoke();
         }
         else
         {
@@ -54,9 +59,10 @@ public class Player : MonoBehaviour
 
     private void Healing()
     {
-        if (_currentHealth < _maxHealth) 
+        if (_currentHealth < _maxHealth)
         {
             _currentHealth += 1;
-        }
+            ChangeHealth?.Invoke();
+        } 
     }
 }
