@@ -3,10 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class SmoothBar : MonoBehaviour
+public class SmoothBar : HealthDisplay
 {
     [SerializeField] private Image _bar;
-    [SerializeField] private Player _player;
     [SerializeField] private float _smoothSpeed = 0.1f;
 
     private Coroutine _currentCoroutine;
@@ -19,22 +18,7 @@ public class SmoothBar : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        SetHealth();
-    }
-
-    private void OnEnable()
-    {
-        _player.ChangeHealth += OnChangeHealth;
-    }
-
-    private void OnDisable()
-    {
-        _player.ChangeHealth -= OnChangeHealth;
-    }
-
-    private void OnChangeHealth()
+    protected override void UpdateDisplay()
     {
         if (_currentCoroutine != null)
         {
@@ -58,10 +42,5 @@ public class SmoothBar : MonoBehaviour
         }
 
         _bar.fillAmount = targetFillAmount;
-    }
-
-    private void SetHealth()
-    {
-        _bar.fillAmount = (float)_player.CurrentHealth / _player.MaxHealth;
     }
 }
