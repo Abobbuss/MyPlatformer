@@ -7,6 +7,6 @@ public class TextHealthIndikator : HealthDisplay
 
     protected override void UpdateDisplay()
     {
-        _health.text = $"{_player.CurrentHealth} / {_player.MaxHealth}";
+        _health.text = $"{_aliveObject.CurrentHealth} / {_aliveObject.MaxHealth}";
     }
 }

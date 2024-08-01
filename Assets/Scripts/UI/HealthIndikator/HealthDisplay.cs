@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class HealthDisplay : MonoBehaviour
 {
-    [SerializeField] protected Player _player;
+    [SerializeField] protected AliveGamingObject _aliveObject;
 
     protected virtual void Start()
     {
@@ -11,12 +11,12 @@ public abstract class HealthDisplay : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        _player.ChangeHealth += OnChangeHealth;
+        _aliveObject.ChangeHealth += OnChangeHealth;
     }
 
     protected virtual void OnDisable()
     {
-        _player.ChangeHealth -= OnChangeHealth;
+        _aliveObject.ChangeHealth -= OnChangeHealth;
     }
 
     private void OnChangeHealth()

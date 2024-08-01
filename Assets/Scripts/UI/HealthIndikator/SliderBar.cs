@@ -7,6 +7,6 @@ public class SliderBar : HealthDisplay
 
     protected override void UpdateDisplay()
     {
-        _slider.value = (float)_player.CurrentHealth / _player.MaxHealth;
+        _slider.value = (float)_aliveObject.CurrentHealth / _aliveObject.MaxHealth;
     }
 }

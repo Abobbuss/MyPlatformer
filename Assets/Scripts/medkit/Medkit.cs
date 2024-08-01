@@ -10,8 +10,7 @@ public class Medkit : MonoBehaviour
         if (other.TryGetComponent(out Player _))
         {
             InvokeTakingMedkit();
-
-/*            Destroy(gameObject);*/
+            Destroy(gameObject);
         }
     }
 

@@ -1,51 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
-public class Player : MonoBehaviour
+public class Player : AliveGamingObject
 {
-    [SerializeField] private int _maxHealth = 3;
+    [SerializeField] private float _invincibilityDuration = 2f;
 
     public event UnityAction TakingDamage;
-    public event UnityAction ChangeHealth;
 
-    private int _currentHealth;
-
-    public int CurrentHealth => _currentHealth;
-    public int MaxHealth => _maxHealth;
-
-    private void Start()
-    {
-        _currentHealth = _maxHealth;
-    }
-
-    public void TakeDamage()
-    {
-        _currentHealth -= 1;
-
-        if (_currentHealth > 0)
-        {
-            TakingDamage?.Invoke();
-            ChangeHealth?.Invoke();
-        }
-        else
-        {
-            Debug.Log("Game over");
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out EnemyDeathZone deathZone))
-        {
-            deathZone.KillEnemy();
-        }
-        else if (other.TryGetComponent(out Enemy _))
-        {
-            TakeDamage();
-        }
-    }
+    private bool _canTakeDamage = true;
 
     private void OnEnable()
     {
@@ -61,8 +25,35 @@ public class Player : MonoBehaviour
     {
         if (_currentHealth < _maxHealth)
         {
-            _currentHealth += 1;
-            ChangeHealth?.Invoke();
+            _currentHealth = _maxHealth;
+            OnChangeHealth();
         } 
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        _canTakeDamage = false;
+        yield return new WaitForSeconds(_invincibilityDuration);
+
+        _canTakeDamage = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out EnemyDeathZone deathZone))
+        {
+            deathZone.KillEnemy();
+        }
+        else if (other.TryGetComponent(out Enemy _) && _canTakeDamage)
+        {
+            TakeDamage();
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    protected override void OnDeath()
+    {
+        Debug.Log("Game over");
+        Destroy(gameObject);
     }
 }

@@ -1,21 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public class Enemy : AliveGamingObject
 {
-    [SerializeField] private int _health = 1;
-
-    public void TakeDamage()
+    protected override void OnDeath()
     {
-        _health -= 1;
-
-        if (_health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +12,7 @@ public class Enemy : MonoBehaviour
         if (other.TryGetComponent(out Enemy _))
         {
             TakeDamage();
+            OnChangeHealth();
         }
     }
 }
