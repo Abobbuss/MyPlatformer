@@ -13,15 +13,29 @@ public class Player : AliveGamingObject
 
     private void OnEnable()
     {
-        Medkit.TakingMedKit += Healing;
+        Medkit.TakingMedKit += HealingAllHealth;
     }
 
     private void OnDisable()
     {
-        Medkit.TakingMedKit -= Healing;
+        Medkit.TakingMedKit -= HealingAllHealth;
     }
 
-    private void Healing()
+    private void Start()
+    {
+        _currentHealth = 5;
+    }
+
+    public void Heal(int value)
+    {
+        if (_currentHealth < _maxHealth)
+        {
+            _currentHealth += value;
+            OnChangeHealth();
+        }
+    }
+
+    private void HealingAllHealth()
     {
         if (_currentHealth < _maxHealth)
         {
