@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Player))]
 public class Vampirism : MonoBehaviour
@@ -16,16 +15,17 @@ public class Vampirism : MonoBehaviour
 
     private void OnEnable()
     {
-        _vampirismAbility.OnHealStart += HealPlayer;
+        _vampirismAbility.HealingCompleted += HealPlayer;
     }
 
     private void OnDisable()
     {
-        _vampirismAbility.OnHealStart -= HealPlayer;
+        _vampirismAbility.HealingCompleted -= HealPlayer;
     }
 
     private void HealPlayer()
     {
-        _player.Heal(_healValue);
+        int healAmount = Mathf.Min(_healValue, _vampirismAbility.DamageDealtToEnemy);
+        _player.Heal(healAmount);
     }
 }

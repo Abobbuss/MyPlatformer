@@ -8,21 +8,29 @@ public class VampirismAbility : MonoBehaviour
     [SerializeField] private float _healTime = 6f;
     [SerializeField] private float _reloadTime = 6f;
     [SerializeField] private KeyCode _activateAbility = KeyCode.G;
-    [SerializeField] private AbilityUI _abilityUI;
 
     private Enemy _currentEnemy;
     private Coroutine _currentCoroutine;
+    private WaitForSeconds _waitTime = new WaitForSeconds(1f);
     private bool _isActive;
-    private bool _isEnemyInRange = true;
+    private bool _isEnemyInRange = false;
+    private float _currentTimeAbility;
 
-    public UnityAction OnHealStart;
+    public float CurrentTimeAbility { get; private set; }
+    public int DamageDealtToEnemy { get; private set; }
+
+    public event UnityAction HealingCompleted;
+    public event UnityAction ReloadingCompleted;
+
+    private void Start()
+    {
+        _currentTimeAbility = _healTime;
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(_activateAbility) && !_isActive && _isEnemyInRange)
-        {
             ActivateAbility();
-        }
     }
 
     private void ActivateAbility()
@@ -37,21 +45,16 @@ public class VampirismAbility : MonoBehaviour
     {
         _isActive = true;
         float spendTime = 1f;
-        float remainingTime = _healTime;
 
-        _abilityUI.UpdateTimerDisplay(_healTime);
-
-        while (remainingTime > 0 && _currentEnemy != null)
+        while (_currentTimeAbility > 0 && _currentEnemy != null)
         {
-            yield return new WaitForSeconds(spendTime);
+            yield return _waitTime;
 
             if (_currentEnemy != null)
             {
                 _currentEnemy.TakeDamage();
-                remainingTime -= spendTime;
-                OnHealStart?.Invoke();
-
-                _abilityUI.UpdateTimerDisplay(remainingTime);
+                _currentTimeAbility -= spendTime;
+                HealingCompleted?.Invoke();
             }
         }
 
@@ -61,20 +64,13 @@ public class VampirismAbility : MonoBehaviour
 
     private IEnumerator HandleReload()
     {
-        float elapsedTime = 0f;
-        float reloadDuration = _reloadTime;
-
-        while (elapsedTime < reloadDuration)
+        while (_currentTimeAbility < _reloadTime)
         {
-            elapsedTime += Time.deltaTime;
-
-            float currentValue = Mathf.Lerp(0, reloadDuration, elapsedTime / reloadDuration);
-            _abilityUI.UpdateTimerDisplay(currentValue);
+            _currentTimeAbility = Mathf.Lerp(0, _reloadTime, _currentTimeAbility / _reloadTime) + Time.deltaTime;
+            ReloadingCompleted?.Invoke();
 
             yield return null;
         }
-
-        _abilityUI.UpdateTimerDisplay(reloadDuration);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
