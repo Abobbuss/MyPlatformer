@@ -7,39 +7,22 @@ public class Player : AliveGamingObject
 {
     [SerializeField] private float _invincibilityDuration = 2f;
 
-    public event UnityAction TakingDamage;
-
     private bool _canTakeDamage = true;
 
-    private void OnEnable()
+    public void TakeHeal(int value)
     {
-        Medkit.TakingMedKit += HealingAllHealth;
-    }
-
-    private void OnDisable()
-    {
-        Medkit.TakingMedKit -= HealingAllHealth;
-    }
-
-    private void Start()
-    {
-        _currentHealth = 5;
-    }
-
-    public void Heal(int value)
-    {
-        if (_currentHealth < _maxHealth)
+        if (m_currentHealth < m_maxHealth)
         {
-            _currentHealth += value;
+            m_currentHealth += value;
             OnChangeHealth();
         }
     }
 
-    private void HealingAllHealth()
+    public void HealAllHealth()
     {
-        if (_currentHealth < _maxHealth)
+        if (m_currentHealth < m_maxHealth)
         {
-            _currentHealth = _maxHealth;
+            m_currentHealth = m_maxHealth;
             OnChangeHealth();
         } 
     }
@@ -62,6 +45,10 @@ public class Player : AliveGamingObject
         {
             TakeDamage();
             StartCoroutine(InvincibilityCoroutine());
+        }
+        else if (other.TryGetComponent(out Medkit medkit)) 
+        {
+            HealAllHealth();
         }
     }
 

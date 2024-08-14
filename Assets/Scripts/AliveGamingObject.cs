@@ -3,26 +3,26 @@ using UnityEngine.Events;
 
 public abstract class AliveGamingObject : MonoBehaviour
 {
-    [SerializeField] protected int _maxHealth;
-    protected int _currentHealth;
+    [SerializeField] protected int m_maxHealth;
+    protected int m_currentHealth;
 
     public event UnityAction ChangeHealth;
 
-    public int CurrentHealth => _currentHealth;
-    public int MaxHealth => _maxHealth;
+    public int CurrentHealth => m_currentHealth;
+    public int MaxHealth => m_maxHealth;
 
     private int _damage = 1;
 
     protected virtual void Start()
     {
-        _currentHealth = _maxHealth;
+        m_currentHealth = m_maxHealth;
     }
 
     public virtual void TakeDamage()
     {
-        _currentHealth -= _damage;
+        m_currentHealth -= _damage;
 
-        if (_currentHealth > 0)
+        if (m_currentHealth > 0)
             OnChangeHealth();
         else
             OnDeath();

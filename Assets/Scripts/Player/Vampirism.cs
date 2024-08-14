@@ -26,6 +26,6 @@ public class Vampirism : MonoBehaviour
     private void HealPlayer()
     {
         int healAmount = Mathf.Min(_healValue, _vampirismAbility.DamageDealtToEnemy);
-        _player.Heal(healAmount);
+        _player.TakeHeal(healAmount);
     }
 }

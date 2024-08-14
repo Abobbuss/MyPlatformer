@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerCoin : MonoBehaviour
@@ -8,10 +6,10 @@ public class SpawnerCoin : MonoBehaviour
 
     private void Start()
     {
-        SpawnCoins();
+        SpawnCoin();
     }
 
-    private void SpawnCoins()
+    private void SpawnCoin()
     {
         float halfSpawnerPositionX = transform.localScale.x / 2;
         float randomX = Random.Range(transform.position.x - halfSpawnerPositionX, transform.position.x + halfSpawnerPositionX);

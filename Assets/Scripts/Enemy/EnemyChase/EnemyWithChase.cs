@@ -29,7 +29,7 @@ public class EnemyWithChase : EnemyPatrol
     private void ChasePlayer()
     {
         float direction = (_player.position.x > transform.position.x) ? 1f : -1f;
-        base._spriteRenderer.flipX = (direction < 0);
+        base.m_spriteRenderer.flipX = (direction < 0);
 
         transform.position = Vector2.MoveTowards(transform.position, _player.position, _chaseSpeed * Time.deltaTime);
     }

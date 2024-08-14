@@ -1,18 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Medkit : MonoBehaviour
+public class Medkit : CollectibleItem
 {
-    public static event UnityAction TakingMedKit;
+    public event UnityAction Taking;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnCollect(Player player)
     {
-        if (other.TryGetComponent(out Player _))
-        {
-            InvokeTakingMedkit();
-            Destroy(gameObject);
-        }
+        player.HealAllHealth();
     }
-
-    public static void InvokeTakingMedkit() => TakingMedKit?.Invoke();
 }

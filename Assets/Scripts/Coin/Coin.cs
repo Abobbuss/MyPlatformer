@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Coin : MonoBehaviour
+public class Coin : CollectibleItem
 {
     [SerializeField] private Animator _animator;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnCollect(Player player)
     {
-        if (other.TryGetComponent(out Player _))
-        {
-            Destroy(gameObject);
-        }
+        // Когда-нибудь реализую сумку с монетами
+        // TO DO
     }
 }

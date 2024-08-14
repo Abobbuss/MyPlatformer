@@ -30,7 +30,7 @@ public class SmoothBar : HealthDisplay
 
     private IEnumerator SmoothSetHealth()
     {
-        float targetFillAmount = (float)_aliveObject.CurrentHealth / _aliveObject.MaxHealth;
+        float targetFillAmount = (float)m_aliveObject.CurrentHealth / m_aliveObject.MaxHealth;
         float initialFillAmount = _bar.fillAmount;
         float elapsedTime = 0f;
 
